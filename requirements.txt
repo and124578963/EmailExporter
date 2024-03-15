@@ -1,0 +1,6 @@
+pillow==10.2.0
+imgkit==1.2.2
+pymongo==4.3.3
+chardet==5.1.0
+python-dotenv==1.0.0
+pyaml-env~=1.2.1

@@ -1,0 +1,80 @@
+database:
+    db_name: emailAlertBot_TEST
+    host: 51.250.108.35
+    port: 27000
+
+profiles:
+  - source:
+        folder: _GPB_SUPPORT
+        imap_host:  imap.gmail.com
+        login: !ENV ${PERVUSHIN_LOGIN}
+        password: !ENV ${PERVUSHIN_PASSWORD}
+    image:
+      force_to_image: false
+      max_width_px: 800
+      max_height_px: 1400
+
+    replacements:
+
+    filters:
+      receiver_regex_mask: "@glowbyteconsulting.com"
+      restricted_subjects_regex:
+          - "re:"
+    extra_fields:
+       enable_assigne: true
+#------------------------------
+  - source:
+        folder: _Dejurnii
+        imap_host:  imap.gmail.com
+        login: !ENV ${PERVUSHIN_LOGIN}
+        password: !ENV ${PERVUSHIN_PASSWORD}
+
+    replacements:
+
+    image:
+      force_to_image: true
+      max_width_px: 900
+      max_height_px: 1500
+
+    filters:
+      receiver_regex_mask: "@glowbyteconsulting.com"
+      restricted_subjects_regex:
+          - "re:"
+    extra_fields:
+       enable_assigne: true
+#--------------------------------
+  - source:
+        folder: _GBC_HR
+        imap_host: imap.gmail.com
+        login: !ENV ${PERVUSHIN_LOGIN}
+        password: !ENV ${PERVUSHIN_PASSWORD}
+
+    replacements:
+      - pattern: '^'
+        substr: "<style>table{display: table-row !important;}</style>"
+      - pattern: "table-layout:fixed;"
+        substr: ""
+
+    image:
+      force_to_image: true
+      max_width_px: 600
+      max_height_px: 1400
+
+    filters:
+      receiver_regex_mask: "@glowbyteconsulting.com"
+      restricted_subjects_regex:
+          - "re"
+    extra_fields:
+       enable_assigne: false
+
+
+attachments:
+    path: ./attachments
+
+logging:
+    path: logs/mailModule.log
+    backupCount: 5
+    maxMegaBytes: 100
+    loggers:
+      - name: mailModule
+        lvl: DEBUG
