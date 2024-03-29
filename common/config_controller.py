@@ -23,9 +23,9 @@ class Config(metaclass=Singleton):
         sys.excepthook = logging_excepthook
 
     @staticmethod
-    def get_abs_main_path(ext_path:str):
+    def get_abs_main_path(path_from_main_root: str):
         import __main__
-        return os.path.join(os.path.dirname(os.path.abspath(__main__.__file__)), ext_path)
+        return os.path.join(os.path.dirname(os.path.abspath(__main__.__file__)), path_from_main_root)
 
     @staticmethod
     def get_logger(logger_name: str) -> Logger:
